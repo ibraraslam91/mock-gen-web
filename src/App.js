@@ -5,6 +5,7 @@ import ProjectScreens from "./component/Screens/Screens";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import PrivateRoute from "./Utils/Route/PrivateRoute";
 import RestrictedRoute from "./Utils/Route/RestrictedRoute";
+import ProjectSetting from "./component/Setting/ProjectSetting";
 
 
 function App() {
@@ -28,8 +29,17 @@ function App() {
                         </PrivateRoute>
                     }
                     />
+                    <Route path="/setting/:projectId" element={
+                        <PrivateRoute>
+                            <ProjectSetting/>
+                        </PrivateRoute>
+                    }
+
+                    />
                 </Routes>
             </div>
+            <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a
+                href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         </BrowserRouter>
     );
 }

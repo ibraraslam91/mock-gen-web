@@ -8,7 +8,7 @@ export default function ProjectGrid(props) {
     const projectCols = projects.map( (project, index) =>{
             return (
                 <Col xs="12" md="6" lg="4" key={project.id}>
-                    <ProjectCard name={project.name} description={project.description} index={project.id}/>
+                    <ProjectCard project_data={project} name={project.name} description={project.description} index={project.id}/>
                 </Col>
             )
     });

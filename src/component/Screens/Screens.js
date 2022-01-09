@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {LinkContainer} from 'react-router-bootstrap'
 
 import "./Screen.css"
 
@@ -10,6 +11,8 @@ import ScreenList from "./ScreenList";
 import LayerList from "./LayerList";
 import MockCanvas from "./MockCanvas";
 import {BASE_URL} from "../../Constants";
+
+import {IoSettingsSharp} from "react-icons/io5";
 
 export default function ProjectScreens() {
     const params = useParams();
@@ -60,7 +63,15 @@ export default function ProjectScreens() {
 
     return (
         <>
-            <h1 className="page-title">{projectName}</h1>
+            <div>
+                <h1 className="page-title">
+                    {projectName}
+                    <LinkContainer to={'/setting/' + params.projectId}>
+                        <IoSettingsSharp/>
+                    </LinkContainer>
+                </h1>
+            </div>
+
             <br/>
             <div>
                 <AddScreenModal

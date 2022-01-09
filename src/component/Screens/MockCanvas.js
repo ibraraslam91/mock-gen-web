@@ -139,6 +139,9 @@ export default function MockCanvas(props) {
                     onMouseDown={handleMouseDown}
                     onMouseMove={handleMouseMove}
                     onMouseUp={handleMouseUp}
+                    onTouchStart={handleMouseDown}
+                    onTouchEnd={handleMouseUp}
+                    onTouchMove={handleMouseMove}
                     ref={stageRef}
                 >
 
