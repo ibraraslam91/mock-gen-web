@@ -16,7 +16,6 @@ export default function Project() {
     const handleOpenAddProjectModal = () => setShowAddProjectModal(true);
 
     useEffect(() => {
-        console.log("tocken", getAccessToken());
         const projects_url = BASE_URL + "/mocks/projects/";
         axios.get(projects_url, {
             headers: {

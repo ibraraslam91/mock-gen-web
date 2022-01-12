@@ -10,19 +10,21 @@ export default function ProjectCard(props) {
             <Card style={{width: '18rem'}} key={props.project_data.id} className="box">
                 <Card.Body>
                     <Card.Title>{props.project_data.name}</Card.Title>
-                    <Card.Text>
-                        <div>
+                    <Card.Text style={{ display: 'flex' }}>
+                        <div style={{ flex: 4 }}>
                             <div>
                                 {props.project_data.description}
                             </div>
+                            <div>
+                                Created by: {props.project_data.added_by.username}
+                            </div>
+                        </div>
+                        <div style={{ flex: 1 }}>
                             <div>
                                 <CgScreen/> {props.project_data.screens.length}
                             </div>
                             <div>
                                 <HiUsers/> {props.project_data.users.length}
-                            </div>
-                            <div>
-                                Created by: {props.project_data.added_by.username}
                             </div>
                         </div>
                     </Card.Text>

@@ -29,7 +29,7 @@ export default function ProjectScreens() {
     const handleOpenAddScreenModal = () => setShowAddScreenModal(true);
     const updateSelectedScreen = (data) => {
         setSelectedScreen(data)
-    }
+    };
 
     useEffect(() => {
         const project_detail_url = BASE_URL + "/mocks/projects/" + params.projectId + "/screens/" + selectedScreen;
@@ -41,8 +41,8 @@ export default function ProjectScreens() {
             setLayers(response.data.layers);
         }).catch(error => {
             console.log(error);
-        })
-    }, [selectedScreen])
+        });
+    }, [selectedScreen]);
 
     useEffect(() => {
         const project_detail_url = BASE_URL + "/mocks/projects/" + params.projectId;
@@ -54,24 +54,31 @@ export default function ProjectScreens() {
             setProjectName(response.data.name);
             setScreens(response.data.screens);
             if (response.data.screens.length !== 0) {
-                setSelectedScreen(response.data.screens[0].id)
+                setSelectedScreen(response.data.screens[0].id);
             }
         }).catch(error => {
             console.log(error);
-        })
-    }, [])
+        });
+    }, []);
 
     return (
         <>
             <div>
-                <h1 className="page-title">
+                <span style={{display: "flex"}}>
+                    <h1 className="page-title">
                     {projectName}
-                    <LinkContainer to={'/setting/' + params.projectId}>
-                        <IoSettingsSharp/>
-                    </LinkContainer>
                 </h1>
-            </div>
+                    <LinkContainer to={'/setting/' + params.projectId}>
+                        <span >
+                            <span style={{ position: 'absolute', marginTop: '25px', marginLeft: '10px' }}>
+                                <IoSettingsSharp />
+                            </span>
+                        </span>
 
+                    </LinkContainer>
+                </span>
+
+            </div>
             <br/>
             <div>
                 <AddScreenModal

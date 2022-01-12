@@ -18,20 +18,21 @@ export default function LayerList(props) {
                 }
             }
         ).then(response => {
-            console.log(response);
             window.location.reload();
         }).catch(error => {
             console.log(error);
         });
-
-        console.log(id);
     }
 
     const rows = layers.map((layer, index) => {
         return (
             <ListGroup.Item key={layer.id}>
-                Layer: {layer.id}
-                <BiLayerMinus onClick={(id) => handleDeleteLayer(layer.id)}/>
+                <div style={{display: "flex", justifyContent: "space-between"}}>
+                    Layer: {layer.id}
+                    <div>
+                        <BiLayerMinus onClick={(id) => handleDeleteLayer(layer.id)}/>
+                    </div>
+                </div>
             </ListGroup.Item>
         )
     })

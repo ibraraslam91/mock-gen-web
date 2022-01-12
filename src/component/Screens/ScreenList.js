@@ -14,9 +14,11 @@ export default function ScreenList(props) {
                 key={screen.id}
                 onClick={(id) => handleScreenSelection(screen.id)}
             >
-                {screen.name}
-                <div>
-                    <BiLayer/> {screen.layers_count}
+                <div style={{display: "flex", justifyContent: "space-between"}}>
+                    {screen.name}
+                    <div>
+                        <BiLayer/> {screen.layers_count}
+                    </div>
                 </div>
             </ListGroup.Item>
         );
@@ -26,7 +28,12 @@ export default function ScreenList(props) {
         <ListGroup>
             {rows}
             <ListGroup.Item className="align-center" onClick={props.showAddScreenModal}>
-                Add Screen <BiLayerPlus/>
+                <div style={{display: "flex", justifyContent: "space-between"}}>
+                    Add Screen
+                    <div>
+                        <BiLayerPlus/>
+                    </div>
+                </div>
             </ListGroup.Item>
         </ListGroup>
     );

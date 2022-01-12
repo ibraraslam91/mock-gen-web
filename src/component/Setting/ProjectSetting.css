@@ -1,0 +1,10 @@
+@media all and (min-width: 480px) {
+    .project-update-form {
+        padding: 60px 0;
+    }
+
+    .project-update-form form {
+        margin: 0 auto;
+        max-width: 80%;
+    }
+}

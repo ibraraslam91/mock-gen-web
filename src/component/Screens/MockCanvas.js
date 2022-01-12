@@ -77,7 +77,6 @@ export default function MockCanvas(props) {
                 "Authorization": "Bearer " + getAccessToken()
             }
         }).then(response => {
-            console.log(response);
             props.mockAdded();
         }).catch(error => {
             console.log(error);
@@ -87,7 +86,6 @@ export default function MockCanvas(props) {
 
 
     useEffect(()=> {
-        console.log("width", ref.current.offsetWidth);
         setComponentWidth(ref.current.offsetWidth)
     }, [])
 
