@@ -6,6 +6,9 @@ export const getUser = () =>{
 
 export const removeUserSession = () => {
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('roles');
+    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('refresh_roles');
 }
 
 export const getAccessToken = () => {

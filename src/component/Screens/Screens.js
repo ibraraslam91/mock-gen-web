@@ -63,18 +63,17 @@ export default function ProjectScreens() {
 
     return (
         <>
-            <div>
+            <div style={{ marginTop:"10px"}}>
                 <span style={{display: "flex"}}>
                     <h1 className="page-title">
-                    {projectName}
-                </h1>
+                        {projectName}
+                    </h1>
                     <LinkContainer to={'/setting/' + params.projectId}>
-                        <span >
-                            <span style={{ position: 'absolute', marginTop: '25px', marginLeft: '10px' }}>
-                                <IoSettingsSharp />
+                        <span>
+                            <span style={{position: 'absolute', marginTop: '25px', marginLeft: '10px'}}>
+                                <IoSettingsSharp/>
                             </span>
                         </span>
-
                     </LinkContainer>
                 </span>
 

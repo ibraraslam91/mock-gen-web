@@ -5,6 +5,7 @@ import ProjectGrid from "./ProjectGrid";
 import AddProjectModal from "./AddProjectModal";
 import {getAccessToken} from "../../Utils/Session/sessionUtils";
 import {BASE_URL} from "../../Constants";
+import Header from "../../Layout/Header/Header";
 
 export default function Project() {
     const [projectsData, setProjectsData] = useState([]);
@@ -29,13 +30,18 @@ export default function Project() {
     }, []);
     return (
         <div className="Project">
-            <div>
-                <h3 className="page-title">Projects</h3>
+            <div style={{display: "flex", justifyContent: "space-between", marginTop:"10px"}}>
+                <div>
+                    <h3 className="page-title">Projects</h3>
+                </div>
+                <Header/>
             </div>
+
             <div>
                 <AddProjectModal
                     showAddProjectModal={showAddProjectModal}
-                    handleCloseAddProjectModal={handleCloseAddProjectModal}/>
+                    handleCloseAddProjectModal={handleCloseAddProjectModal}
+                />
             </div>
             <br/>
             <div className="project-container">
