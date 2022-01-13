@@ -13,6 +13,7 @@ import MockCanvas from "./MockCanvas";
 import {BASE_URL} from "../../Constants";
 
 import {IoSettingsSharp} from "react-icons/io5";
+import Header from "../../Layout/Header/Header";
 
 export default function ProjectScreens() {
     const params = useParams();
@@ -63,6 +64,7 @@ export default function ProjectScreens() {
 
     return (
         <>
+            <Header/>
             <div style={{ marginTop:"10px"}}>
                 <span style={{display: "flex"}}>
                     <h1 className="page-title">
@@ -75,8 +77,8 @@ export default function ProjectScreens() {
                             </span>
                         </span>
                     </LinkContainer>
-                </span>
 
+                </span>
             </div>
             <br/>
             <div>

@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 
 import "./ProjectSetting.css"
 import Button from "react-bootstrap/Button";
+import Header from "../../Layout/Header/Header";
 
 
 export default function ProjectSetting() {
@@ -80,7 +81,12 @@ export default function ProjectSetting() {
 
     return (
         <div>
-            <h1>Project Setting ({projectName})</h1>
+            <div style={{display: "flex", justifyContent: "space-between", marginTop:"10px"}}>
+                <div>
+                    <h1>Project Setting ({projectName})</h1>
+                </div>
+                <Header/>
+            </div>
             <div className="project-update-form">
                 <Form onSubmit={handleSubmit}>
                     <Form.Group size="lg" controlId="email">

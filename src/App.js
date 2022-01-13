@@ -6,7 +6,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import PrivateRoute from "./Utils/Route/PrivateRoute";
 import RestrictedRoute from "./Utils/Route/RestrictedRoute";
 import ProjectSetting from "./component/Setting/ProjectSetting";
-
+import TeamSetting from "./component/TeamSetting/TeamSetting";
 
 function App() {
     return (
@@ -34,8 +34,14 @@ function App() {
                             <ProjectSetting/>
                         </PrivateRoute>
                     }
-
                     />
+                    <Route path="/team" element={
+                        <PrivateRoute>
+                            <TeamSetting/>
+                        </PrivateRoute>
+                    }/>
+
+
                 </Routes>
             </div>
             <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a
