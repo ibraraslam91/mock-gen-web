@@ -40,8 +40,7 @@ export default function TeamSetting() {
         }).catch(error => {
             console.log(error);
         })
-
-    })
+    }, [])
 
 
     return (

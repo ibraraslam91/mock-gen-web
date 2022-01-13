@@ -5,6 +5,7 @@ import axios from "axios";
 import {getAccessToken} from "../../Utils/Session/sessionUtils";
 import RectComponent from "./RectComponent";
 import {BASE_URL} from "../../Constants";
+import jsPDF from "jspdf";
 
 
 export default function MockCanvas(props) {
@@ -63,6 +64,37 @@ export default function MockCanvas(props) {
         });
     };
 
+    const handleClearCanvas = () => {
+        setLines([]);
+    }
+
+    const handleDownloadImage = () => {
+        const stage = stageRef.current;
+        const image = stage.toDataURL({ pixelRatio: 3 });
+        const link = document.createElement('a');
+        link.download = 'export.png';
+        link.href = image;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    const handleDownloadPDF = () => {
+        const stage = stageRef.current;
+        const image = stage.toDataURL({ pixelRatio: 3 });
+        const pdf = new jsPDF('l', 'px', [stage.width(), stage.height()]);
+        // #EEEEFF
+        pdf.setTextColor('#000000');
+        pdf.addImage(
+            stage.toDataURL({ pixelRatio: 2 }),
+            0,
+            0,
+            stage.width(),
+            stage.height()
+        );
+        pdf.save('export.pdf');
+    }
+
     const handleGetImage = () => {
         const stage = stageRef.current;
         const layer = stage.findOne('#free-hand');
@@ -81,7 +113,6 @@ export default function MockCanvas(props) {
         }).catch(error => {
             console.log(error);
         })
-
     }
 
 
@@ -128,6 +159,16 @@ export default function MockCanvas(props) {
                 <Button className="btn-add-layer" onClick={handleGetImage}>
                     Add Layer
                 </Button>
+                <Button className="btn-add-layer" onClick={handleClearCanvas}>
+                    Clear Canvas
+                </Button>
+                <Button className="btn-add-layer" onClick={handleDownloadImage}>
+                    Download Image
+                </Button>
+                <Button className="btn-add-layer" onClick={handleDownloadPDF}>
+                    Download PFD
+                </Button>
+
             </div>
             <br/>
             <div ref={ref}>

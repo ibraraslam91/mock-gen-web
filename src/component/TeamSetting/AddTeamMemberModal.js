@@ -14,13 +14,27 @@ export default function AddTeamMemberModal(props) {
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
-    const [userRole, setUserRole] = useState(0);
+    const [userRole, setUserRole] = useState(1);
 
     const [systemRoles, setSystemRoles] = useState([]);
 
     const handleSubmit = () => {
-
-    }
+        const create_user_url = BASE_URL + "/api/users/";
+        axios.post(create_user_url, {
+            username: userName,
+            email: userEmail,
+            password: userPassword,
+            groups: [userRole]
+        }, {
+            headers: {
+                "Authorization": "Bearer " + getAccessToken()
+            }
+        }).then(response => {
+            props.handleCloseModal();
+        }).catch(error => {
+            console.log(error);
+        })
+    };
 
     useEffect(() => {
         const groups_list_url = BASE_URL + "/api/groups/";
@@ -33,7 +47,7 @@ export default function AddTeamMemberModal(props) {
         }).catch(error => {
             console.log(error);
         });
-    })
+    }, []);
 
     return (
         <Modal show={showModal} onHide={props.handleCloseModal}>
