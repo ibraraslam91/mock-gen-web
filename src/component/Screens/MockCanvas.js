@@ -1,6 +1,8 @@
 import {Group, Layer, Line, Rect, Stage} from "react-konva";
 import {useEffect, useRef, useState} from "react";
 import {Button, ButtonGroup, ToggleButton} from "react-bootstrap";
+import {AiOutlineClear, AiOutlineFilePdf, AiOutlineFileImage} from "react-icons/ai";
+
 import axios from "axios";
 import {getAccessToken, isPrivilegedRole} from "../../Utils/Session/sessionUtils";
 import RectComponent from "./RectComponent";
@@ -166,14 +168,14 @@ export default function MockCanvas(props) {
                 {
                     isPrivilegedUser &&
                     <Button className="btn-add-layer" onClick={handleClearCanvas}>
-                        Clear Canvas
+                        <AiOutlineClear/>
                     </Button>
                 }
                 <Button className="btn-add-layer" onClick={handleDownloadImage}>
-                    Download Image
+                    Download <AiOutlineFileImage/>
                 </Button>
                 <Button className="btn-add-layer" onClick={handleDownloadPDF}>
-                    Download PFD
+                    Download <AiOutlineFilePdf/>
                 </Button>
 
             </div>
