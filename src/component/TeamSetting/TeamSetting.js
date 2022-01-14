@@ -4,13 +4,14 @@ import TeamMemberCard from "./TeamMemberCard";
 import React, {useEffect, useState} from "react";
 import {BASE_URL} from "../../Constants";
 import axios from "axios";
-import {getAccessToken} from "../../Utils/Session/sessionUtils";
+import {getAccessToken, isPrivilegedRole} from "../../Utils/Session/sessionUtils";
 import AddTeamMemberModal from "./AddTeamMemberModal";
 
 export default function TeamSetting() {
 
     const [userTeam, setUserTeam] = useState( []);
     const [showAddMember, setShowAddMember] = useState(false);
+    const isPrivilegedUser = isPrivilegedRole();
 
     const handleOpenAddMemberModal = () => setShowAddMember(true);
 
@@ -46,7 +47,11 @@ export default function TeamSetting() {
     return (
         <>
             <h1>Manage Team</h1>
-            <Button variant="primary" onClick={handleOpenAddMemberModal}>Add Team Member</Button>
+            {
+                isPrivilegedUser &&
+                <Button variant="primary" onClick={handleOpenAddMemberModal}>Add Team Member</Button>
+            }
+
             <AddTeamMemberModal
                 showTeamMemberModal={showAddMember}
                 handleCloseModal={handleCloseAddMemberModal}

@@ -29,3 +29,9 @@ export const isLoggedIn = () => {
     console.log("isLoggedIn", !!userStr);
     return !!userStr;
 }
+
+export const isPrivilegedRole = () => {
+    const userRoles = sessionStorage.getItem('roles');
+    if (userRoles) return JSON.parse(userRoles).includes("Privileged Role");
+    else return null;
+}

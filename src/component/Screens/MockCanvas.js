@@ -2,7 +2,7 @@ import {Group, Layer, Line, Rect, Stage} from "react-konva";
 import {useEffect, useRef, useState} from "react";
 import {Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import axios from "axios";
-import {getAccessToken} from "../../Utils/Session/sessionUtils";
+import {getAccessToken, isPrivilegedRole} from "../../Utils/Session/sessionUtils";
 import RectComponent from "./RectComponent";
 import {BASE_URL} from "../../Constants";
 import jsPDF from "jspdf";
@@ -21,6 +21,7 @@ export default function MockCanvas(props) {
     const stageRef = useRef();
     const [componentWidth, setComponentWidth] = useState(0);
     const ref = useRef(null);
+    const isPrivilegedUser = isPrivilegedRole();
 
     const dataURLtoFile = (dataurl, filename) => {
         const arr = dataurl.split(',')
@@ -70,7 +71,7 @@ export default function MockCanvas(props) {
 
     const handleDownloadImage = () => {
         const stage = stageRef.current;
-        const image = stage.toDataURL({ pixelRatio: 3 });
+        const image = stage.toDataURL({pixelRatio: 3});
         const link = document.createElement('a');
         link.download = 'export.png';
         link.href = image;
@@ -81,12 +82,12 @@ export default function MockCanvas(props) {
 
     const handleDownloadPDF = () => {
         const stage = stageRef.current;
-        const image = stage.toDataURL({ pixelRatio: 3 });
+        const image = stage.toDataURL({pixelRatio: 3});
         const pdf = new jsPDF('l', 'px', [stage.width(), stage.height()]);
         // #EEEEFF
         pdf.setTextColor('#000000');
         pdf.addImage(
-            stage.toDataURL({ pixelRatio: 2 }),
+            stage.toDataURL({pixelRatio: 2}),
             0,
             0,
             stage.width(),
@@ -116,7 +117,7 @@ export default function MockCanvas(props) {
     }
 
 
-    useEffect(()=> {
+    useEffect(() => {
         setComponentWidth(ref.current.offsetWidth)
     }, [])
 
@@ -156,12 +157,18 @@ export default function MockCanvas(props) {
                         )
                     }
                 </ButtonGroup>
-                <Button className="btn-add-layer" onClick={handleGetImage}>
-                    Add Layer
-                </Button>
-                <Button className="btn-add-layer" onClick={handleClearCanvas}>
-                    Clear Canvas
-                </Button>
+                {
+                    isPrivilegedUser &&
+                    <Button className="btn-add-layer" onClick={handleGetImage}>
+                        Add Layer
+                    </Button>
+                }
+                {
+                    isPrivilegedUser &&
+                    <Button className="btn-add-layer" onClick={handleClearCanvas}>
+                        Clear Canvas
+                    </Button>
+                }
                 <Button className="btn-add-layer" onClick={handleDownloadImage}>
                     Download Image
                 </Button>
@@ -195,6 +202,7 @@ export default function MockCanvas(props) {
 
                         />
                         {
+                            isPrivilegedUser &&
                             lines.map((line, index) => (
                                 <Line
                                     key={index}

@@ -2,11 +2,12 @@ import axios from "axios";
 import {ListGroup} from "react-bootstrap";
 import {BiLayerMinus} from "react-icons/bi";
 
-import {getAccessToken} from "../../Utils/Session/sessionUtils";
+import {getAccessToken, isPrivilegedRole} from "../../Utils/Session/sessionUtils";
 import {BASE_URL} from "../../Constants";
 
 export default function LayerList(props) {
     const layers = props.layers;
+    const isPrivilegedUser = isPrivilegedRole();
 
     const handleDeleteLayer = (id) => {
         const delete_layer_url = BASE_URL + "/mocks/layers/" + id;
@@ -29,9 +30,13 @@ export default function LayerList(props) {
             <ListGroup.Item key={layer.id}>
                 <div style={{display: "flex", justifyContent: "space-between"}}>
                     Layer: {layer.id}
-                    <div>
-                        <BiLayerMinus onClick={(id) => handleDeleteLayer(layer.id)}/>
-                    </div>
+                    {
+                        isPrivilegedUser &&
+                        <div>
+                            <BiLayerMinus onClick={(id) => handleDeleteLayer(layer.id)}/>
+                        </div>
+                    }
+
                 </div>
             </ListGroup.Item>
         )
